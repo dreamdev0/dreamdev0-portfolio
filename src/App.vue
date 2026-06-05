@@ -16,4 +16,5 @@ import { RouterView } from 'vue-router'
       <component :is="Component" :key="route.fullPath" />
     </Transition>
   </RouterView>
+  <Analytics />
 </template>
