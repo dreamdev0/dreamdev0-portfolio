@@ -1,0 +1,129 @@
+{
+  "site": {
+    "title": "dreamdev — Programador de Videojuegos y Desarrollador Web",
+    "description": "Portfolio de dreamdev, programador de videojuegos y desarrollador web frontend."
+  },
+  "nav": {
+    "skipToContent": "Saltar al contenido",
+    "stageAria": "Navegación de diapositivas",
+    "next": "Siguiente diapositiva",
+    "prev": "Diapositiva anterior",
+    "items": {
+      "hero": "Inicio",
+      "about": "Sobre mí",
+      "skills": "Habilidades",
+      "projects": "Proyectos",
+      "experience": "Experiencia",
+      "contact": "Contacto"
+    }
+  },
+  "header": {
+    "theme": {
+      "toMocha": "Cambiar a tema Mocha",
+      "toLatte": "Cambiar a tema Latte"
+    },
+    "accent": "Color de acento",
+    "locale": {
+      "toEn": "Switch to English",
+      "toEs": "Cambiar a Español"
+    }
+  },
+  "progress": {
+    "aria": "Progreso de scroll",
+    "slide": "Ir a {section}"
+  },
+  "hero": {
+    "greeting": "Hola, soy {name} ✨",
+    "tagline": "Programador de Videojuegos y Desarrollador Web Frontend",
+    "scroll": "Desliza",
+    "ctaContact": "Hablemos"
+  },
+  "about": {
+    "heading": "Sobre mí",
+    "bio": [
+      "Soy Programador de Videojuegos y Desarrollador Web Frontend, me encanta programar todo el tiempo.",
+      "Mi sueño es dominar la mayor cantidad posible de lenguajes, tecnologías y herramientas, para adaptarme a cualquier proyecto y dar vida a cualquier idea.",
+      "Amo Catppuccin Mocha."
+    ]
+  },
+  "skills": {
+    "heading": "Habilidades",
+    "categories": {
+      "engines": "Motores",
+      "languages": "Lenguajes",
+      "frontend": "Frontend",
+      "design": "Diseño"
+    }
+  },
+  "projects": {
+    "heading": "Proyectos",
+    "source": "Código",
+    "play": "Jugar",
+    "items": {
+      "alpha": {
+        "title": "Proyecto Alpha",
+        "description": "Un prototipo corto de acción-aventura hecho en Unity con C#."
+      },
+      "neon-runner": {
+        "title": "Neon Runner",
+        "description": "Un endless runner cyberpunk hecho en Unreal Engine 5."
+      },
+      "dreamdev-web": {
+        "title": "dreamdev web",
+        "description": "Un experimento de sitio personal con Vue, Nuxt y Astro."
+      }
+    }
+  },
+  "experience": {
+    "heading": "Experiencia",
+    "items": {
+      "indie": {
+        "role": "Desarrollador Indie",
+        "org": "Autónomo",
+        "description": "Trabajando en proyectos personales de videojuegos y web."
+      },
+      "studio": {
+        "role": "Programador de Videojuegos",
+        "org": "Estudio / Equipo",
+        "description": "Programación de gameplay, tooling y UI frontend para proyectos de juegos."
+      },
+      "education": {
+        "role": "Estudiante de CS / Autodidacta",
+        "org": "Educación",
+        "description": "Estudios de fundamentos de ciencias de la computación y desarrollo de juegos."
+      }
+    }
+  },
+  "contact": {
+    "heading": "Contacto",
+    "intro": "Construyamos algo juntos",
+    "email": "Escríbeme por email",
+    "whatsapp": "Escríbeme por WhatsApp",
+    "github": "Encuéntrame en GitHub",
+    "phone": "Llámame"
+  },
+  "footer": {
+    "copyright": "© {year} {name}"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Esta diapositiva no existe.",
+    "back": "Volver al inicio"
+  },
+  "accents": {
+    "rosewater": "Rosewater",
+    "flamingo": "Flamingo",
+    "pink": "Rosa",
+    "mauve": "Malva",
+    "red": "Rojo",
+    "maroon": "Granate",
+    "peach": "Durazno",
+    "yellow": "Amarillo",
+    "green": "Verde",
+    "teal": "Turquesa",
+    "sky": "Cielo",
+    "sapphire": "Zafiro",
+    "blue": "Azul",
+    "lavender": "Lavanda"
+  }
+}

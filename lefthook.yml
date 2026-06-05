@@ -1,0 +1,16 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: "*.{ts,vue,js}"
+      run: pnpm exec eslint --fix {staged_files}
+      stage_fixed: true
+    format:
+      glob: "*.{ts,vue,js,css,md,json}"
+      run: pnpm exec prettier --write {staged_files}
+      stage_fixed: true
+
+pre-push:
+  commands:
+    type-check:
+      run: pnpm type-check

@@ -1,0 +1,129 @@
+{
+  "site": {
+    "title": "dreamdev — Game Programmer & Frontend Web Developer",
+    "description": "Portfolio of dreamdev, game programmer and frontend web developer."
+  },
+  "nav": {
+    "skipToContent": "Skip to content",
+    "stageAria": "Slideshow navigation",
+    "next": "Next slide",
+    "prev": "Previous slide",
+    "items": {
+      "hero": "Home",
+      "about": "About",
+      "skills": "Skills",
+      "projects": "Projects",
+      "experience": "Experience",
+      "contact": "Contact"
+    }
+  },
+  "header": {
+    "theme": {
+      "toMocha": "Switch to Mocha theme",
+      "toLatte": "Switch to Latte theme"
+    },
+    "accent": "Accent color",
+    "locale": {
+      "toEn": "Switch to English",
+      "toEs": "Cambiar a Español"
+    }
+  },
+  "progress": {
+    "aria": "Scroll progress",
+    "slide": "Go to {section}"
+  },
+  "hero": {
+    "greeting": "Hi, I'm {name} ✨",
+    "tagline": "Game Programmer & Frontend Web Developer",
+    "scroll": "Scroll",
+    "ctaContact": "Get in touch"
+  },
+  "about": {
+    "heading": "About",
+    "bio": [
+      "I'm a Game Programmer & Frontend Web Developer who loves coding all the time.",
+      "My dream is to master as many programming languages, technologies, and tools as possible, enabling me to adapt to any project and bring any idea to life.",
+      "I love Catppuccin Mocha."
+    ]
+  },
+  "skills": {
+    "heading": "Skills",
+    "categories": {
+      "engines": "Engines",
+      "languages": "Languages",
+      "frontend": "Frontend",
+      "design": "Design"
+    }
+  },
+  "projects": {
+    "heading": "Projects",
+    "source": "Source",
+    "play": "Play",
+    "items": {
+      "alpha": {
+        "title": "Project Alpha",
+        "description": "A short action-adventure prototype built in Unity with C#."
+      },
+      "neon-runner": {
+        "title": "Neon Runner",
+        "description": "An endless cyberpunk runner made in Unreal Engine 5."
+      },
+      "dreamdev-web": {
+        "title": "dreamdev web",
+        "description": "A personal site experiment with Vue, Nuxt and Astro."
+      }
+    }
+  },
+  "experience": {
+    "heading": "Experience",
+    "items": {
+      "indie": {
+        "role": "Indie Game Developer",
+        "org": "Self-employed",
+        "description": "Working on personal game projects and web experiments."
+      },
+      "studio": {
+        "role": "Game Programmer",
+        "org": "Studio / Team",
+        "description": "Gameplay programming, tooling, and frontend UI for game projects."
+      },
+      "education": {
+        "role": "CS Student / Self-taught",
+        "org": "Education",
+        "description": "Studied computer science fundamentals and game dev."
+      }
+    }
+  },
+  "contact": {
+    "heading": "Contact",
+    "intro": "Let's build something together",
+    "email": "Email me",
+    "whatsapp": "Message me on WhatsApp",
+    "github": "Find me on GitHub",
+    "phone": "Call me"
+  },
+  "footer": {
+    "copyright": "© {year} {name}"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "This slide doesn't exist.",
+    "back": "Back to home"
+  },
+  "accents": {
+    "rosewater": "Rosewater",
+    "flamingo": "Flamingo",
+    "pink": "Pink",
+    "mauve": "Mauve",
+    "red": "Red",
+    "maroon": "Maroon",
+    "peach": "Peach",
+    "yellow": "Yellow",
+    "green": "Green",
+    "teal": "Teal",
+    "sky": "Sky",
+    "sapphire": "Sapphire",
+    "blue": "Blue",
+    "lavender": "Lavender"
+  }
+}
