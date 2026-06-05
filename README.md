@@ -1,38 +1,58 @@
 # dreamdev0-portfolio
 
-A modern, scroll-driven portfolio for a game programmer & frontend web developer. Built with Vue 3, Vite, TypeScript, Tailwind CSS v4, and the Catppuccin Mocha theme.
+> A modern, scroll-driven personal portfolio for a game programmer & frontend web developer.
 
-## Stack
+A slide-based single-page portfolio built around custom navigation, GSAP-driven transitions and ambient motion. Designed with the [Catppuccin](https://github.com/catppuccin) palette, 14 swappable accent colors, light/dark theming and full EN/ES localization.
 
-- **Vue 3** + Composition API + `<script setup>`
-- **Vite 6** as bundler / dev server
-- **TypeScript** strict mode
-- **Tailwind CSS v4** (via `@tailwindcss/vite`) with `@theme inline` for the global accent token
-- **@catppuccin/tailwindcss** (Mocha flavor + Latte support)
-- **@vueuse/core** + **@vueuse/motion** for scroll-spy, progress bar, and declarative animations
-- **vue-i18n v11** for EN / ES translations with type-safe message schemas
-- **vue-router** for navigation (with a slide-style single-page home and a 404 view)
-- **ESLint v9** (flat config) + **Prettier** + **lefthook** + **lint-staged**
-- **pnpm** as the package manager (version pinned in `packageManager`)
+![Stack: Vue 3](https://img.shields.io/badge/Vue-3-42b883)
+![Stack: Vite 6](https://img.shields.io/badge/Vite-6-646cff)
+![Stack: TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
+![Stack: Tailwind CSS v4](https://img.shields.io/badge/Tailwind-v4-38bdf8)
+![Stack: GSAP](https://img.shields.io/badge/GSAP-3-88ce02)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
-## Features
+---
 
-- 🖼️ **Slide-based scroll** — each section is a snap-anchored full-viewport slide
-- 📊 **Scroll progress bar** (vertical rail + horizontal top bar + active dot indicator)
-- 🎨 **14 selectable accents** (Mauve, Blue, Lavender, Peach, etc.) with reactive updates
-- 🌗 **Mocha / Latte** theme toggle with system preference detection
-- 🌐 **EN / ES** i18n with browser-language detection
-- ♿ Accessible focus rings, aria labels, reduced-motion support, keyboard navigation
-- 🪄 `v-motion` entrance + stagger animations on every slide
+## Highlights
+
+- **Custom slide navigation** — wheel, touch swipe, keyboard, footer dots and a cooldown system to keep rapid scrolling smooth.
+- **GSAP-powered transitions** — every slide cross-fades with parallel `xPercent` and `opacity` timelines, with cancellation to prevent stacking artifacts.
+- **Ambient loops** — per-slide in-place animations (drifting orbs, rotating frames, pulsing timeline dots, conic gradient ring) gated by a `useAmbientLoop` composable that respects `prefers-reduced-motion`.
+- **Cursor glow** — subtle radial highlight that follows the pointer (desktop only, disabled under reduced motion).
+- **14 accent colors** — switchable at runtime through a unified `--accent` CSS token; Tailwind v4 `@theme inline` keeps the whole UI in sync.
+- **Mocha & Latte themes** — dark and light variants of the Catppuccin palette with system preference detection.
+- **EN / ES** — full i18n via `vue-i18n` v11 with type-checked message schemas.
+- **Accessibility first** — focus rings, ARIA labels, `inert` on inactive slides, keyboard navigation and full reduced-motion compliance.
+
+---
+
+## Tech stack
+
+| Layer               | Choice                                                                    |
+| ------------------- | ------------------------------------------------------------------------- |
+| Framework           | **Vue 3** (Composition API + `<script setup>`)                            |
+| Bundler             | **Vite 6**                                                                |
+| Language            | **TypeScript** (strict)                                                   |
+| Styling             | **Tailwind CSS v4** (via `@tailwindcss/vite`) with `@theme inline` tokens |
+| Palette             | **`@catppuccin/tailwindcss`** (Mocha + Latte)                             |
+| Animation           | **GSAP 3**                                                                |
+| State / composables | **`@vueuse/core`**, custom composables                                    |
+| Routing             | **`vue-router` 4**                                                        |
+| i18n                | **`vue-i18n` 11** (type-checked messages)                                 |
+| Quality             | **ESLint 9** (flat config), **Prettier**, **lefthook**, **lint-staged**   |
+| Package manager     | **pnpm** (version pinned in `packageManager`)                             |
+
+---
 
 ## Getting started
 
 ```bash
 pnpm install
-pnpm dev        # http://localhost:5173
+pnpm dev          # http://localhost:5173
+pnpm hooks:install # optional: install lefthook git hooks
 ```
 
-## Scripts
+### Scripts
 
 | Command              | Description                         |
 | -------------------- | ----------------------------------- |
@@ -41,40 +61,75 @@ pnpm dev        # http://localhost:5173
 | `pnpm preview`       | Preview the production build        |
 | `pnpm type-check`    | Run `vue-tsc --noEmit`              |
 | `pnpm lint`          | Lint with ESLint (auto-fix)         |
+| `pnpm lint:check`    | Lint with ESLint (no fix)           |
 | `pnpm format`        | Format with Prettier                |
-| `pnpm hooks:install` | Install the lefthook git hooks      |
+| `pnpm format:check`  | Check formatting                    |
+| `pnpm hooks:install` | Install lefthook git hooks          |
+
+---
 
 ## Project structure
 
 ```
 src/
-├── main.ts                # App bootstrap, plugin registration, init state
-├── App.vue                # RouterView with transition
-├── style.css              # Tailwind + Catppuccin + @theme inline accent tokens
-├── i18n/                  # vue-i18n setup, locales (en, es), schema types
-├── data/                  # profile, skills, projects, experience, accents
-├── types/                 # TypeScript interfaces
-├── composables/           # useTheme, useAccent, useLocale, useScrollProgress, useActiveSection
-├── router/                # Vue Router config
+├── main.ts                  # App bootstrap, plugin registration, init state
+├── App.vue                  # RouterView with cross-fade transition
+├── style.css                # Tailwind + Catppuccin + @theme inline tokens
+├── i18n/                    # vue-i18n setup, locales (en, es), schema types
+├── data/                    # profile, skills, projects, experience, accents
+├── types/                   # TypeScript interfaces
+├── composables/             # useTheme, useAccent, useLocale, useNavigation,
+│                            # useSlideNavigation, useGsap, useGsapReveal,
+│                            # useEntryTimeline, useAmbientLoop, useReducedMotion
+├── directives/              # vHoverGsap
+├── router/                  # Vue Router config
 ├── components/
-│   ├── layout/            # AppHeader, AppFooter, ScrollProgressBar
-│   ├── ui/                # TagChip, GradientButton, ThemeToggle, AccentPicker, LocaleSwitcher, SocialIconLink, SectionHeading
-│   └── slides/            # Hero, About, Skills, Projects, Experience, Contact
-└── views/                 # HomeView, NotFoundView
+│   ├── layout/              # AppHeader, AppFooter, SlideStage, CursorGlow
+│   ├── ui/                  # TagChip, GradientButton, ThemeToggle,
+│   │                        # AccentPicker, LocaleSwitcher, SocialIconLink,
+│   │                        # SectionHeading
+│   └── slides/              # Hero, About, Skills, Projects, Experience, Contact
+└── views/                   # HomeView, NotFoundView
 public/
 ├── favicon.svg
-├── projects/              # Placeholder SVG covers
+├── avatar.png
+├── projects/                # Project cover SVGs
 └── robots.txt
 ```
 
+---
+
+## Architecture notes
+
+### Slide navigation
+
+`useSlideNavigation` (`src/composables/useSlideNavigation.ts`) is the single source of truth for the current slide. It exposes an integer `current`, an animated float `index`, a `target` for the next slide, a `progress` value for the footer bar and a `cooldown` flag that prevents rapid-fire transitions from breaking the visual stack.
+
+### Transitions
+
+`SlideStage` (`src/components/layout/SlideStage.vue`) watches `[target, current]`, kills any in-flight timeline and builds a fresh GSAP timeline that cross-fades the outgoing and incoming panels in parallel.
+
+### Ambient motion
+
+`useAmbientLoop` is a tiny composable that wires `watch(activeRef)` to a setup/teardown pair. Every slide uses it to start/stop its looping tweens cleanly when the slide becomes active or inactive.
+
+### Theming
+
+A single `--accent` CSS variable is overridden at runtime by `useAccent`. Tailwind v4's `@theme inline` binds utilities like `bg-accent` to that variable, so the whole UI updates in one place.
+
+---
+
 ## Customization
 
-- **Profile data** — edit `src/data/profile.ts`
+- **Profile data** — `src/data/profile.ts`
 - **Projects / skills / experience** — `src/data/projects.ts`, `skills.ts`, `experience.ts`
 - **Translations** — `src/i18n/locales/en.json` and `es.json` (type-checked at build time)
 - **Default accent** — `src/data/accents.ts` → `DEFAULT_ACCENT`
-- **Section order** — `src/views/HomeView.vue` and `src/components/layout/AppHeader.vue`
+- **Slide order and content** — `src/views/HomeView.vue`
+- **Per-slide ambient animations** — the matching file in `src/components/slides/`
+
+---
 
 ## License
 
-MIT
+[MIT](./LICENSE)
