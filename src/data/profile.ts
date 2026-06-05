@@ -1,10 +1,10 @@
 import type { SocialLink } from '@/types'
 
 export const profile = {
-  name: 'dreamdev',
-  displayName: 'dreamdev',
+  name: 'Dream',
+  displayName: 'Dream',
   location: 'Perú',
-  avatar: '/avatar.png',
+  avatar: '/avatar.webp',
   socials: [
     { id: 'github', label: 'GitHub', href: 'https://github.com/dreamdev0' },
     { id: 'email', label: 'Email', href: 'mailto:aalonsoopg@gmail.com' },

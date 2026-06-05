@@ -1,4 +1,4 @@
-import { watch, onBeforeUnmount, type Ref, isRef } from 'vue'
+import { watch, onMounted, onBeforeUnmount, type Ref, isRef } from 'vue'
 import { useReducedMotion } from './useReducedMotion'
 
 export function useAmbientLoop(isActive: Ref<boolean> | boolean, setup: () => () => void): void {
@@ -15,19 +15,19 @@ export function useAmbientLoop(isActive: Ref<boolean> | boolean, setup: () => ()
   }
 
   const start = (): void => {
-    if (teardown) return
+    stop()
     if (reducedMotion.value) return
     teardown = setup()
   }
 
-  watch(
-    activeRef,
-    (v) => {
-      if (v) start()
-      else stop()
-    },
-    { immediate: true, flush: 'post' },
-  )
+  watch(activeRef, (v) => {
+    if (v) start()
+    else stop()
+  })
+
+  onMounted(() => {
+    if (activeRef.value) start()
+  })
 
   watch(reducedMotion, (v) => {
     if (v) stop()

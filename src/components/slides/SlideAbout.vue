@@ -41,9 +41,9 @@ useAmbientLoop(
 <template>
   <section id="about" class="flex h-full w-full items-center" aria-label="About">
     <div
-      class="mx-auto grid w-full max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_1fr]"
+      class="mx-auto grid w-full max-w-6xl items-center gap-12 px-4 sm:gap-16 sm:px-6 lg:grid-cols-[1.1fr_1fr]"
     >
-      <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-4 sm:gap-6">
         <div data-slide-anim>
           <SectionHeading shimmer>{{ t('about.heading') }}</SectionHeading>
         </div>
@@ -55,7 +55,10 @@ useAmbientLoop(
         </div>
       </div>
 
-      <div data-slide-anim class="relative mx-auto aspect-square w-full max-w-sm">
+      <div
+        data-slide-anim
+        class="relative mx-auto aspect-square w-full max-w-[160px] sm:max-w-[240px] lg:max-w-sm"
+      >
         <div
           ref="halo"
           class="from-accent to-accent-strong absolute inset-0 -rotate-6 rounded-2xl bg-gradient-to-br opacity-50 blur-2xl"

@@ -57,7 +57,7 @@ useAmbientLoop(
     )
     tweens.push(
       gsap.to(orb1.value, {
-        opacity: 0.4,
+        opacity: 0.2,
         duration: 5,
         ease: 'sine.inOut',
         yoyo: true,
@@ -66,7 +66,7 @@ useAmbientLoop(
     )
     tweens.push(
       gsap.to(orb2.value, {
-        opacity: 0.25,
+        opacity: 0.2,
         duration: 6,
         ease: 'sine.inOut',
         yoyo: true,
@@ -90,11 +90,13 @@ useAmbientLoop(
   >
     <div
       ref="orb1"
+      data-slide-decor
       class="bg-accent pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full opacity-0 blur-3xl"
       aria-hidden="true"
     />
     <div
       ref="orb2"
+      data-slide-decor
       class="bg-accent-strong pointer-events-none absolute -bottom-40 -left-24 h-96 w-96 rounded-full opacity-0 blur-3xl"
       aria-hidden="true"
     />

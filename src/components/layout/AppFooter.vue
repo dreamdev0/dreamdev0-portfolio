@@ -47,13 +47,20 @@ function onJump(id: string): void {
 <template>
   <footer
     ref="root"
-    class="fixed inset-x-0 bottom-0 z-30 flex h-20 items-center px-20"
+    class="fixed inset-x-0 bottom-0 z-30 flex h-16 items-center px-4 sm:h-20 sm:px-6 md:px-20"
     :aria-label="t('progress.aria')"
   >
-    <div class="flex w-full items-center gap-6 sm:gap-8">
-      <p class="text-ctp-subtext0 shrink-0 text-xs sm:text-sm">
+    <div class="flex w-full items-center gap-3 sm:gap-6 md:gap-8">
+      <p class="text-ctp-subtext0 shrink-0 text-[10px] sm:text-xs md:text-sm">
         {{ t('footer.copyright', { year, name: profile.displayName }) }}
       </p>
+
+      <div class="bg-ctp-surface0/40 relative flex-1 overflow-hidden rounded-full md:hidden">
+        <div
+          class="from-accent to-accent-strong absolute inset-y-0 left-0 bg-gradient-to-r transition-[width] duration-150 ease-out"
+          :style="{ width: `${progress * 100}%` }"
+        />
+      </div>
 
       <div ref="dotsRef" class="hidden flex-1 items-center gap-3 sm:gap-4 md:flex">
         <div class="bg-ctp-surface0/40 relative h-[3px] flex-1 overflow-hidden rounded-full">

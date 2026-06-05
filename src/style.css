@@ -99,14 +99,57 @@ pre,
   width: 100%;
   height: 100%;
   overflow: hidden;
-  touch-action: none;
-  overscroll-behavior: none;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
 }
 
 .slide-panel {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* ─────────── Slide scroll wrapper ─────────── */
+.slide-scroll {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .slide-scroll {
+    overflow: visible;
+    display: block;
+    padding: 0;
+  }
+}
+
+/* Mobile: sections use min-height: 100% so they fill the scroll area
+   (and items-center centers short content like hero/contact/about)
+   while flex-shrink: 0 lets tall content grow past it
+   (skills/projects/experience) so .slide-scroll scrolls from the top. */
+@media (max-width: 639px) {
+  .slide-scroll > section {
+    min-height: 100%;
+    height: auto;
+    flex-shrink: 0;
+    overflow: visible;
+  }
+}
+
+/* Hero: content always fits and is centered, so the inner scroll
+   wrapper doesn't need to scroll. Removing overflow prevents the
+   unnecessary scrollbar / rubber-band on mobile. */
+.slide-scroll:has(> #hero) {
+  overflow: visible;
 }
 
 /* ─────────── Reduced motion ─────────── */
@@ -116,7 +159,7 @@ pre,
     overflow: auto;
   }
   .stage {
-    touch-action: auto;
+    touch-action: pan-y;
   }
   *,
   *::before,

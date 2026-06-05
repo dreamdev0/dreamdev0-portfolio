@@ -59,7 +59,20 @@ useGsap((ctx) => {
       gsap.killTweensOf(outgoing)
       gsap.killTweensOf(incoming)
 
+      slideRefs.value.forEach((el, idx) => {
+        if (!el || idx === to || idx === from) return
+        gsap.set(el, { xPercent: 100 * dir, opacity: 0 })
+      })
+
       gsap.set(incoming, { xPercent: 100 * dir, opacity: 0 })
+
+      const incomingChildren = incoming.querySelectorAll<HTMLElement>('[data-slide-anim]')
+      if (incomingChildren.length) {
+        gsap.set(incomingChildren, { y: 48, opacity: 0 })
+      }
+
+      const outX = gsap.getProperty(outgoing, 'xPercent') as number
+      const outO = gsap.getProperty(outgoing, 'opacity') as number
 
       const tl = gsap.timeline({
         onComplete: () => {
@@ -69,8 +82,9 @@ useGsap((ctx) => {
         },
       })
 
-      tl.to(
+      tl.fromTo(
         outgoing,
+        { xPercent: outX, opacity: outO },
         {
           xPercent: -100 * dir,
           opacity: 0.35,
@@ -78,7 +92,15 @@ useGsap((ctx) => {
           ease: 'power3.inOut',
         },
         0,
-      ).to(
+      )
+
+      const outgoingDecors = outgoing.querySelectorAll<HTMLElement>('[data-slide-decor]')
+      if (outgoingDecors.length) {
+        gsap.killTweensOf(outgoingDecors)
+        tl.to(outgoingDecors, { opacity: 0, duration: 0.4, ease: 'power2.out' }, 0)
+      }
+
+      tl.to(
         incoming,
         {
           xPercent: 0,
@@ -89,7 +111,6 @@ useGsap((ctx) => {
         0,
       )
 
-      const incomingChildren = incoming.querySelectorAll<HTMLElement>('[data-slide-anim]')
       if (incomingChildren.length) {
         tl.fromTo(
           incomingChildren,
@@ -149,12 +170,14 @@ useGsapReveal(stageEl, {
       v-for="(item, i) in components"
       :key="item.id"
       :ref="(el) => setSlideRef(el as Element | null, i)"
-      class="slide-panel absolute inset-0 p-20"
+      class="slide-panel absolute inset-0 px-4 pt-[max(4rem,env(safe-area-inset-top))] pb-[max(4rem,env(safe-area-inset-bottom))] sm:px-6 sm:pt-[max(5rem,env(safe-area-inset-top))] sm:pb-[max(5rem,env(safe-area-inset-bottom))] md:p-20"
       :class="{ 'pointer-events-none': !isActive(item.id) }"
       :aria-hidden="!isActive(item.id)"
       :inert="!isActive(item.id) ? true : undefined"
     >
-      <component :is="item.component" :active="isActive(item.id)" />
+      <div class="slide-scroll">
+        <component :is="item.component" :active="isActive(item.id)" />
+      </div>
     </div>
   </div>
 </template>
