@@ -51,7 +51,7 @@ useAmbientLoop(
   >
     <div
       ref="ring"
-      class="pointer-events-none absolute top-1/2 left-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-2xl"
+      class="pointer-events-none absolute top-1/2 left-1/2 h-[min(520px,calc(100vw-2rem))] w-[min(520px,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-2xl"
       style="
         background: conic-gradient(
           from 0deg,
@@ -80,7 +80,7 @@ useAmbientLoop(
         v-hover-gsap="{ scale: 1.05 }"
         data-slide-anim
         :href="`mailto:${profile.contact.email}`"
-        class="group text-accent inline-flex items-center gap-2 text-2xl font-bold will-change-transform sm:text-3xl"
+        class="group text-accent inline-flex items-center gap-2 text-xl font-bold break-all will-change-transform sm:text-2xl md:text-3xl"
       >
         <span class="from-accent to-accent-strong bg-gradient-to-r bg-clip-text text-transparent">
           {{ profile.contact.email }}

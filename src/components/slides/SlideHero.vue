@@ -112,7 +112,7 @@ useAmbientLoop(
 
       <h1
         data-slide-anim
-        class="text-5xl leading-[1.05] font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl"
+        class="text-4xl leading-[1.05] font-extrabold tracking-tight break-words sm:text-5xl md:text-7xl lg:text-8xl"
       >
         <span
           class="from-accent via-accent to-accent-strong bg-gradient-to-br bg-clip-text text-transparent"

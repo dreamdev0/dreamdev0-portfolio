@@ -47,7 +47,7 @@ function onJump(id: string): void {
 <template>
   <footer
     ref="root"
-    class="fixed inset-x-0 bottom-0 z-30 flex h-16 items-center px-4 sm:h-20 sm:px-6 md:px-20"
+    class="fixed inset-x-0 bottom-0 z-30 flex h-16 items-center px-4 sm:h-20 sm:px-6 md:px-12 lg:px-20"
     :aria-label="t('progress.aria')"
   >
     <div class="flex w-full items-center gap-3 sm:gap-6 md:gap-8">

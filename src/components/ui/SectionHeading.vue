@@ -14,7 +14,7 @@ withDefaults(defineProps<{ eyebrow?: string; shimmer?: boolean }>(), {
       </span>
     </div>
     <h2
-      class="section-heading relative text-3xl font-bold tracking-tight sm:text-5xl md:text-6xl"
+      class="section-heading relative text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
       :class="{ 'section-heading--shimmer': shimmer }"
     >
       <slot />

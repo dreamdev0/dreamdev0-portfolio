@@ -39,9 +39,9 @@ useAmbientLoop(
 </script>
 
 <template>
-  <section id="about" class="flex h-full w-full items-center" aria-label="About">
+  <section id="about" class="flex h-full w-full items-center overflow-hidden" aria-label="About">
     <div
-      class="mx-auto grid w-full max-w-6xl items-center gap-12 px-4 sm:gap-16 sm:px-6 lg:grid-cols-[1.1fr_1fr]"
+      class="mx-auto grid w-full max-w-6xl items-center gap-8 px-4 sm:gap-12 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-16"
     >
       <div class="flex flex-col gap-4 sm:gap-6">
         <div data-slide-anim>

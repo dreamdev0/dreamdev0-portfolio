@@ -35,7 +35,7 @@ defineExpose({ root, items })
 <template>
   <header
     ref="root"
-    class="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between gap-3 px-4 sm:h-20 sm:px-6 md:px-20"
+    class="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between gap-3 px-4 sm:h-20 sm:px-6 md:px-6 lg:px-20"
   >
     <a
       data-entry-item

@@ -103,13 +103,14 @@ pre,
   overscroll-behavior: contain;
 }
 
+/* ─────────── Slide scroll wrapper ─────────── */
 .slide-panel {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: clip;
 }
 
-/* ─────────── Slide scroll wrapper ─────────── */
 .slide-scroll {
   height: 100%;
   width: 100%;
@@ -126,23 +127,20 @@ pre,
 
 @media (min-width: 640px) {
   .slide-scroll {
-    overflow: visible;
-    display: block;
     padding: 0;
   }
 }
 
-/* Mobile: sections use min-height: 100% so they fill the scroll area
-   (and items-center centers short content like hero/contact/about)
-   while flex-shrink: 0 lets tall content grow past it
-   (skills/projects/experience) so .slide-scroll scrolls from the top. */
-@media (max-width: 639px) {
-  .slide-scroll > section {
-    min-height: 100%;
-    height: auto;
-    flex-shrink: 0;
-    overflow: visible;
-  }
+/* Sections fill viewport height but grow when content overflows.
+   flex-shrink: 0 prevents content compression.
+   items-center (from slide templates) centers short content within
+   the viewport, while min-height + height: auto lets tall slides
+   (projects, skills, experience) grow naturally. */
+.slide-scroll > section {
+  min-height: 100%;
+  height: auto;
+  flex-shrink: 0;
+  overflow: clip;
 }
 
 /* Hero: content always fits and is centered, so the inner scroll

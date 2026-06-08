@@ -170,7 +170,7 @@ useGsapReveal(stageEl, {
       v-for="(item, i) in components"
       :key="item.id"
       :ref="(el) => setSlideRef(el as Element | null, i)"
-      class="slide-panel absolute inset-0 px-4 pt-[max(4rem,env(safe-area-inset-top))] pb-[max(4rem,env(safe-area-inset-bottom))] sm:px-6 sm:pt-[max(5rem,env(safe-area-inset-top))] sm:pb-[max(5rem,env(safe-area-inset-bottom))] md:p-20"
+      class="slide-panel absolute inset-0 px-4 pt-[max(4rem,env(safe-area-inset-top))] pb-[max(4rem,env(safe-area-inset-bottom))] sm:px-6 sm:pt-[max(5rem,env(safe-area-inset-top))] sm:pb-[max(5rem,env(safe-area-inset-bottom))] md:px-12 lg:px-20"
       :class="{ 'pointer-events-none': !isActive(item.id) }"
       :aria-hidden="!isActive(item.id)"
       :inert="!isActive(item.id) ? true : undefined"
