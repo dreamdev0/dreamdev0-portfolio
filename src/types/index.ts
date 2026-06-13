@@ -31,7 +31,7 @@ export interface Project {
   links: ReadonlyArray<{ label: 'source' | 'play'; href: string }>
 }
 
-export type SkillCategory = 'engines' | 'languages' | 'frontend' | 'design'
+export type SkillCategory = 'engines' | 'languages' | 'frontend' | 'design' | 'tools'
 
 export type ExperienceSlug = 'indie' | 'studio' | 'education'
 

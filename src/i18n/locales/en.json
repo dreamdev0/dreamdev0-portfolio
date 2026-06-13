@@ -52,7 +52,8 @@
       "engines": "Engines",
       "languages": "Languages",
       "frontend": "Frontend",
-      "design": "Design"
+      "design": "Design",
+      "tools": "Tools"
     }
   },
   "projects": {

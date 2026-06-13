@@ -52,7 +52,8 @@
       "engines": "Motores",
       "languages": "Lenguajes",
       "frontend": "Frontend",
-      "design": "Diseño"
+      "design": "Diseño",
+      "tools": "Herramientas"
     }
   },
   "projects": {
