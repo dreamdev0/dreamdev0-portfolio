@@ -5,7 +5,7 @@ interface Props {
   text: string
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 
 const cursorVisible = ref(true)
 let cursorTimer: ReturnType<typeof setInterval> | null = null
