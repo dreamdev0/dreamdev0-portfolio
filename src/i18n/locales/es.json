@@ -24,7 +24,7 @@
     },
     "accent": "Color de acento",
     "locale": {
-      "toEn": "Switch to English",
+      "toEn": "Cambiar a Inglés",
       "toEs": "Cambiar a Español"
     }
   },
@@ -41,9 +41,12 @@
   "about": {
     "heading": "Sobre mí",
     "bio": [
-      "Soy Programador de Videojuegos y Desarrollador Web Frontend, me encanta programar todo el tiempo.",
-      "Mi sueño es dominar la mayor cantidad posible de lenguajes, tecnologías y herramientas, para adaptarme a cualquier proyecto y dar vida a cualquier idea.",
-      "Amo Catppuccin Mocha."
+      "¡Hola! Me llamo Alonso y soy un desarrollador enfocado en la programación de videojuegos y el desarrollo web frontend.",
+      "Dos grandes áreas me motivan: los videojuegos y la tecnología, y la programación es el puente que las conecta perfectamente.",
+      "",
+      "Debido a esto, uno de mis objetivos es aprender tantos lenguajes de programación como sea posible. En el desarrollo de videojuegos, me encanta dar vida a personajes, diseñar entornos inmersivos y construir experiencias memorables. Pero no me limito a un solo entorno; también soy un entusiasta multiplataforma que disfruta de la creación de software y de aprender constantemente nuevas herramientas y frameworks.",
+      "Como profesional, soy altamente enfocado. Valoro enormemente el trabajo en equipo; disfruto mucho más colaborar que trabajar solo, motivado por construir algo colectivamente donde cada persona aporta valor a través de su propia contribución.",
+      "En mi tiempo libre juego videojuegos; mi favorito es <a href=\"https://osu.ppy.sh\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"bio-link-osu\">osu!</a>, un juego de ritmo, y soy fan de la paleta de colores de <a href=\"https://catppuccin.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"bio-link-catppuccin\">Catppuccin</a>."
     ]
   },
   "skills": {

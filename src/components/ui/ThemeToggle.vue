@@ -14,7 +14,7 @@ const ariaLabel = () =>
     type="button"
     :aria-label="ariaLabel()"
     :title="ariaLabel()"
-    class="border-ctp-surface1 bg-ctp-surface0/80 text-ctp-text hover:border-accent hover:text-accent focus-visible:border-accent flex h-10 w-10 items-center justify-center rounded-lg border transition-all"
+    class="border-ctp-surface1 bg-ctp-surface0/80 text-ctp-text hover:border-accent hover:text-accent focus-visible:border-accent flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border transition-all"
     @click="toggle"
   >
     <svg

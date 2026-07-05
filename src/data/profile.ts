@@ -4,7 +4,6 @@ export const profile = {
   name: 'Dream',
   displayName: 'Dream',
   location: 'Perú',
-  avatar: '/avatar.webp',
   socials: [
     { id: 'github', label: 'GitHub', href: 'https://github.com/dreamdev0' },
     { id: 'email', label: 'Email', href: 'mailto:aalonsoopg@gmail.com' },

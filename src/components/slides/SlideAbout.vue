@@ -1,82 +1,105 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { computed, useTemplateRef } from 'vue'
-import { gsap } from 'gsap'
-import { profile } from '@/data/profile'
+
 import SectionHeading from '@/components/ui/SectionHeading.vue'
-import { useAmbientLoop } from '@/composables/useAmbientLoop'
+import TypewriterText from '@/components/ui/TypewriterText.vue'
 
-const { tm, t } = useI18n()
+const { tm, t, locale } = useI18n()
 
-const paragraphs = tm('about.bio') as string[]
+const paragraphs = computed(() => tm('about.bio') as string[])
 
-const props = withDefaults(defineProps<{ active: boolean }>(), {})
+const typewriterText = computed(() => (locale.value === 'es' ? 'Amo programar.' : 'I love coding.'))
 
-const halo = useTemplateRef<HTMLElement>('halo')
+function isHtml(p: string): boolean {
+  return p.includes('<')
+}
 
-useAmbientLoop(
-  computed(() => props.active),
-  () => {
-    const tweens: gsap.core.Tween[] = []
-    if (halo.value) {
-      tweens.push(
-        gsap.to(halo.value, {
-          scale: 1.06,
-          opacity: 0.65,
-          duration: 4.5,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: -1,
-        }),
-      )
-    }
-    return () => {
-      tweens.forEach((tw) => tw.kill())
-      if (halo.value) gsap.set(halo.value, { clearProps: 'transform,opacity' })
-    }
-  },
-)
+function isTypewriter(p: string): boolean {
+  return p === ''
+}
 </script>
 
 <template>
-  <section id="about" class="flex h-full w-full items-center overflow-hidden" aria-label="About">
-    <div
-      class="mx-auto grid w-full max-w-6xl items-center gap-8 px-4 sm:gap-12 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-16"
-    >
+  <section
+    id="about"
+    class="relative flex h-full w-full items-center overflow-hidden"
+    aria-label="About"
+  >
+    <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col justify-center px-4 sm:px-6">
       <div class="flex flex-col gap-4 sm:gap-6">
         <div data-slide-anim>
           <SectionHeading shimmer>{{ t('about.heading') }}</SectionHeading>
         </div>
 
         <div class="text-ctp-subtext1 flex flex-col gap-4 text-base leading-relaxed sm:text-lg">
-          <p v-for="(p, i) in paragraphs" :key="i" data-slide-anim>
-            {{ p }}
-          </p>
-        </div>
-      </div>
-
-      <div
-        data-slide-anim
-        class="relative mx-auto aspect-square w-full max-w-[160px] sm:max-w-[240px] lg:max-w-sm"
-      >
-        <div
-          ref="halo"
-          class="from-accent to-accent-strong absolute inset-0 -rotate-6 rounded-2xl bg-gradient-to-br opacity-50 blur-2xl"
-          aria-hidden="true"
-        />
-        <div
-          class="border-accent bg-ctp-mantle/60 absolute -inset-2 rounded-2xl border-2"
-          aria-hidden="true"
-        />
-        <div class="relative m-2 aspect-square overflow-hidden rounded-2xl">
-          <img
-            v-if="profile.avatar"
-            :src="profile.avatar"
-            alt=""
-            class="relative z-10 h-full w-full object-cover"
-          />
+          <template v-for="(p, i) in paragraphs" :key="i">
+            <p v-if="isTypewriter(p)" data-slide-anim class="text-2xl font-bold">
+              <TypewriterText :text="typewriterText" />
+            </p>
+            <p v-else-if="isHtml(p)" data-slide-anim v-html="p" />
+            <p v-else data-slide-anim>{{ p }}</p>
+          </template>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+:deep(.bio-link-osu) {
+  background: linear-gradient(90deg, #ffffff, #ff66aa, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% 100%;
+  animation: osu-shimmer 3s linear infinite;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+@keyframes osu-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+:deep(.bio-link-catppuccin) {
+  background: linear-gradient(
+    90deg,
+    #f5e0dc,
+    #f2cdcd,
+    #f5c2e7,
+    #cba6f7,
+    #f38ba8,
+    #eba0ac,
+    #fab387,
+    #f9e2af,
+    #a6e3a1,
+    #94e2d5,
+    #89dceb,
+    #74c7ec,
+    #89b4fa,
+    #b4befe
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% 100%;
+  animation: catpuccin-shimmer 4s linear infinite;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+@keyframes catpuccin-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+</style>

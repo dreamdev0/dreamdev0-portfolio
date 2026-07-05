@@ -12,7 +12,6 @@ const emit = defineEmits<{ jump: [id: string] }>()
 const { t } = useI18n()
 
 const sections: NavSection[] = [
-  { id: 'hero', key: 'hero' },
   { id: 'about', key: 'about' },
   { id: 'skills', key: 'skills' },
   { id: 'projects', key: 'projects' },
@@ -35,19 +34,36 @@ defineExpose({ root, items })
 <template>
   <header
     ref="root"
-    class="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between gap-3 px-4 sm:h-20 sm:px-6 md:px-6 lg:px-20"
+    class="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between gap-3 px-4 sm:h-20 sm:px-6 md:px-12 lg:px-20"
   >
     <a
       data-entry-item
       href="#hero"
-      class="group flex items-center gap-2 font-mono text-sm font-bold tracking-tight"
+      class="group hover:text-accent flex items-center gap-2 font-mono text-sm font-bold tracking-tight transition-colors"
       @click.prevent="go('hero')"
     >
-      <span
-        class="from-accent to-accent-strong text-ctp-base flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br"
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 48 48"
+        class="h-8 w-8 rounded-lg"
+        fill="currentColor"
       >
-        &lt;0&gt;
-      </span>
+        <path
+          d="M40.8 7.2c6.4 8.6 5.2 21.9-3.4 30.5s-21.9 9.8-30.5 3.4c9.4 9.4 24.5 9.4 33.9 0s9.4-24.5 0-33.9z"
+        />
+        <path
+          d="M40.8 7.2c.4 7.2-3 16.6-10.2 23.8s-16.6 10.5-23.8 10.2c8.3 4.8 20.6 3.1 28.8-5.1s10-20.5 5.2-28.9z"
+        />
+        <path
+          d="M28.9 18.2c.3-.1.6 0 .8.2s.3.5.2.8l-1.8 4.2 3 3.4c.2.2.3.6.1.8s-.4.4-.7.4l-4.6-.4-2.3 4c-.2.2-.5.4-.8.3-.3 0-.5-.3-.6-.6l-1-4.5-4.5-1c-.3-.1-.5-.3-.6-.6s.1-.6.4-.8l4-2.3-.4-4.6c0-.3.1-.6.4-.7s.6-.1.8.1l3.4 3 4.2-1.8z"
+        />
+        <path
+          d="M40.8 7.2c-8.3-4.8-20.6-3.1-28.8 5.1s-10 20.5-5.2 28.9c-.4-7.2 3-16.6 10.2-23.8s16.6-10.5 23.8-10.2z"
+        />
+        <path
+          d="M40.8 7.2c-9.4-9.4-24.5-9.4-33.9 0s-9.4 24.5 0 33.9c-6.4-8.6-5.2-21.9 3.4-30.5s21.9-9.8 30.5-3.4z"
+        />
+      </svg>
     </a>
 
     <nav ref="items" class="hidden items-center gap-1 md:flex" :aria-label="t('nav.items.hero')">
@@ -57,8 +73,8 @@ defineExpose({ root, items })
         data-entry-item
         type="button"
         :aria-current="props.active === s.id ? 'true' : undefined"
-        class="text-ctp-subtext1 hover:text-ctp-text rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
-        :class="props.active === s.id ? 'text-accent' : ''"
+        class="hover:text-ctp-text cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
+        :class="props.active === s.id ? 'text-accent' : 'text-ctp-subtext1'"
         @click="go(s.id)"
       >
         {{ t(`nav.items.${s.key}`) }}

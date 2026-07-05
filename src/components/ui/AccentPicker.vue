@@ -45,7 +45,7 @@ const currentSwatch = computed(() => {
       :title="t('header.accent')"
       :aria-expanded="open"
       aria-haspopup="dialog"
-      class="border-ctp-surface1 bg-ctp-surface0/80 text-ctp-text hover:border-accent hover:text-accent focus-visible:border-accent flex h-10 w-10 items-center justify-center rounded-lg border transition-all"
+      class="border-ctp-surface1 bg-ctp-surface0/80 text-ctp-text hover:border-accent hover:text-accent focus-visible:border-accent flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border transition-all"
       @click="open = !open"
     >
       <span
@@ -79,7 +79,7 @@ const currentSwatch = computed(() => {
             :aria-label="s.label"
             :aria-pressed="s.isActive"
             :title="s.label"
-            class="group ring-ctp-surface1 relative flex aspect-square items-center justify-center rounded-full ring-1 transition-transform hover:scale-110 focus-visible:scale-110"
+            class="group ring-ctp-surface1 relative flex aspect-square cursor-pointer items-center justify-center rounded-full ring-1 transition-transform hover:scale-110 focus-visible:scale-110"
             :class="s.isActive ? 'ring-accent ring-2' : ''"
             :style="{ backgroundColor: s.color }"
             @click="pick(s.id)"

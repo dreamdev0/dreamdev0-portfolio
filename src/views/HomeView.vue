@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useTemplateRef, markRaw, ref } from 'vue'
+import { computed, useTemplateRef, markRaw, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppFooter from '@/components/layout/AppFooter.vue'
@@ -60,6 +60,13 @@ const nav = useSlideNavigation({
 
 const activeIndex = ref(0)
 const activeId = computed<SectionId>(() => sections[activeIndex.value]?.id ?? 'hero')
+
+watch(
+  () => nav.target.value,
+  (t) => {
+    activeIndex.value = t
+  },
+)
 
 const onStageRef = (el: HTMLElement | null) => {
   nav.stageRef(el)

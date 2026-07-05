@@ -25,7 +25,7 @@
     "accent": "Accent color",
     "locale": {
       "toEn": "Switch to English",
-      "toEs": "Cambiar a Español"
+      "toEs": "Switch to Spanish"
     }
   },
   "progress": {
@@ -41,9 +41,12 @@
   "about": {
     "heading": "About",
     "bio": [
-      "I'm a Game Programmer & Frontend Web Developer who loves coding all the time.",
-      "My dream is to master as many programming languages, technologies, and tools as possible, enabling me to adapt to any project and bring any idea to life.",
-      "I love Catppuccin Mocha."
+      "Hi! My name is Alonso and I'm a developer focused on game programming and frontend web development.",
+      "Two big areas drive me: video games and technology, and programming is the bridge that connects them perfectly.",
+      "",
+      "Because of this, one of my goals is to learn as many programming languages as possible. In game dev, I love bringing characters to life, designing immersive environments, and building memorable experiences. But I don't stick to one environment; I'm also a cross-platform enthusiast who enjoys software creation and constantly learning new tools and frameworks.",
+      "As a professional, I'm highly focused. I truly value teamwork; I enjoy collaborating much more than working alone, driven by building something collectively where everyone adds value through their own contribution.",
+      "In my free time I play games; my favorite is <a href=\"https://osu.ppy.sh\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"bio-link-osu\">osu!</a>, a rhythm game, and I'm a fan of the <a href=\"https://catppuccin.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"bio-link-catppuccin\">Catppuccin</a> color palette."
     ]
   },
   "skills": {

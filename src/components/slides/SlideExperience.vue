@@ -1,58 +1,23 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { computed, useTemplateRef } from 'vue'
-import { gsap } from 'gsap'
 import { experience } from '@/data/experience'
 import SectionHeading from '@/components/ui/SectionHeading.vue'
-import { useAmbientLoop } from '@/composables/useAmbientLoop'
 
 const { t } = useI18n()
-
-const props = defineProps<{ active: boolean }>()
-
-const dots = useTemplateRef<HTMLElement>('dots')
-
-useAmbientLoop(
-  computed(() => props.active),
-  () => {
-    const tweens: gsap.core.Tween[] = []
-    if (dots.value) {
-      const items = dots.value.querySelectorAll<HTMLElement>('[data-timeline-dot]')
-      items.forEach((dot, i) => {
-        tweens.push(
-          gsap.to(dot, {
-            scale: 1.35,
-            duration: 1.2,
-            ease: 'sine.inOut',
-            yoyo: true,
-            repeat: -1,
-            delay: i * 0.35,
-          }),
-        )
-      })
-    }
-    return () => {
-      tweens.forEach((tw) => tw.kill())
-      if (dots.value) {
-        const items = dots.value.querySelectorAll<HTMLElement>('[data-timeline-dot]')
-        items.forEach((dot) => {
-          gsap.set(dot, { clearProps: 'transform' })
-        })
-      }
-    }
-  },
-)
 </script>
 
 <template>
-  <section id="experience" class="flex h-full w-full items-center" aria-label="Experience">
-    <div class="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 sm:gap-10 sm:px-6">
+  <section
+    id="experience"
+    class="relative flex h-full w-full items-center overflow-hidden"
+    aria-label="Experience"
+  >
+    <div class="relative z-10 mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 sm:gap-10 sm:px-6">
       <div data-slide-anim>
         <SectionHeading shimmer>{{ t('experience.heading') }}</SectionHeading>
       </div>
 
       <ol
-        ref="dots"
         class="border-accent-soft relative ml-2 flex flex-col gap-6 border-l-2 pl-6 sm:ml-4 sm:gap-8 sm:pl-8"
       >
         <li v-for="item in experience" :key="item.slug" data-slide-anim class="relative">

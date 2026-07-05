@@ -16,10 +16,10 @@ const label = computed(() =>
     type="button"
     :aria-label="label"
     :title="label"
-    class="border-ctp-surface1 bg-ctp-surface0/80 text-ctp-text hover:border-accent focus-visible:border-accent flex h-10 w-10 items-center justify-center rounded-lg border font-mono text-sm font-bold transition-all"
+    class="border-ctp-surface1 bg-ctp-surface0/80 text-ctp-text hover:border-accent focus-visible:border-accent group flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border font-mono text-sm font-bold transition-all"
     @click="toggle"
   >
-    <span class="from-accent to-accent-strong bg-gradient-to-br bg-clip-text text-transparent">
+    <span class="text-ctp-text group-hover:text-accent transition-colors">
       {{ locale.toUpperCase() }}
     </span>
   </button>
