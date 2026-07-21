@@ -14,13 +14,20 @@ const { t } = useI18n()
   >
     <div class="relative z-10 mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 sm:gap-10 sm:px-6">
       <div data-slide-anim>
-        <SectionHeading shimmer>{{ t('experience.heading') }}</SectionHeading>
+        <SectionHeading shimmer>
+          {{ t('experience.heading') }}
+        </SectionHeading>
       </div>
 
       <ol
         class="border-accent-soft relative ml-2 flex flex-col gap-6 border-l-2 pl-6 sm:ml-4 sm:gap-8 sm:pl-8"
       >
-        <li v-for="item in experience" :key="item.slug" data-slide-anim class="relative">
+        <li
+          v-for="item in experience"
+          :key="item.slug"
+          data-slide-anim
+          class="relative"
+        >
           <span
             data-timeline-dot
             class="bg-accent ring-accent-soft absolute top-1.5 -left-[33px] h-3.5 w-3.5 rounded-full ring-[3px] sm:-left-[41px] sm:h-4 sm:w-4 sm:ring-4"

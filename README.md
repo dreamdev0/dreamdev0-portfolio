@@ -37,9 +37,8 @@ A slide-based single-page portfolio built around custom navigation, GSAP-driven 
 | Palette             | **`@catppuccin/tailwindcss`** (Mocha + Latte)                             |
 | Animation           | **GSAP 3**                                                                |
 | State / composables | **`@vueuse/core`**, custom composables                                    |
-| Routing             | **`vue-router` 4**                                                        |
 | i18n                | **`vue-i18n` 11** (type-checked messages)                                 |
-| Quality             | **ESLint 9** (flat config), **Prettier**, **lefthook**, **lint-staged**   |
+| Quality             | **ESLint 9** (flat config)                                                |
 | Package manager     | **pnpm** (version pinned in `packageManager`)                             |
 
 ---
@@ -49,7 +48,6 @@ A slide-based single-page portfolio built around custom navigation, GSAP-driven 
 ```bash
 pnpm install
 pnpm dev          # http://localhost:5173
-pnpm hooks:install # optional: install lefthook git hooks
 ```
 
 ### Scripts
@@ -62,9 +60,6 @@ pnpm hooks:install # optional: install lefthook git hooks
 | `pnpm type-check`    | Run `vue-tsc --noEmit`              |
 | `pnpm lint`          | Lint with ESLint (auto-fix)         |
 | `pnpm lint:check`    | Lint with ESLint (no fix)           |
-| `pnpm format`        | Format with Prettier                |
-| `pnpm format:check`  | Check formatting                    |
-| `pnpm hooks:install` | Install lefthook git hooks          |
 
 ---
 
@@ -73,7 +68,7 @@ pnpm hooks:install # optional: install lefthook git hooks
 ```
 src/
 ├── main.ts                  # App bootstrap, plugin registration, init state
-├── App.vue                  # RouterView with cross-fade transition
+├── App.vue                  # Root component rendering HomeView
 ├── style.css                # Tailwind + Catppuccin + @theme inline tokens
 ├── i18n/                    # vue-i18n setup, locales (en, es), schema types
 ├── data/                    # profile, skills, projects, experience, accents
@@ -82,14 +77,14 @@ src/
 │                            # useSlideNavigation, useGsap, useGsapReveal,
 │                            # useEntryTimeline, useAmbientLoop, useReducedMotion
 ├── directives/              # vHoverGsap
-├── router/                  # Vue Router config
+
 ├── components/
 │   ├── layout/              # AppHeader, AppFooter, SlideStage, CursorGlow
 │   ├── ui/                  # TagChip, GradientButton, ThemeToggle,
 │   │                        # AccentPicker, LocaleSwitcher, SocialIconLink,
 │   │                        # SectionHeading
 │   └── slides/              # Hero, About, Skills, Projects, Experience, Contact
-└── views/                   # HomeView, NotFoundView
+└── views/                   # HomeView
 public/
 ├── favicon.svg
 ├── avatar.png

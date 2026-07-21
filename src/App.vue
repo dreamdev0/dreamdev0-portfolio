@@ -1,20 +1,17 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { onMounted } from 'vue'
+import { inject } from '@vercel/analytics'
+import { injectSpeedInsights } from '@vercel/speed-insights'
+import HomeView from '@/views/HomeView.vue'
+import CustomCursor from '@/components/ui/CustomCursor.vue'
+
+onMounted(() => {
+  inject()
+  injectSpeedInsights()
+})
 </script>
 
 <template>
-  <RouterView v-slot="{ Component, route }">
-    <Transition
-      mode="out-in"
-      enter-active-class="transition-opacity duration-200"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-active-class="transition-opacity duration-150"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
-    >
-      <component :is="Component" :key="route.fullPath" />
-    </Transition>
-  </RouterView>
-  <Analytics />
+  <HomeView />
+  <CustomCursor />
 </template>

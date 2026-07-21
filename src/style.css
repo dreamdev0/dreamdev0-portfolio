@@ -150,6 +150,13 @@ pre,
   overflow: visible;
 }
 
+/* ─────────── Custom cursor (desktop only) ─────────── */
+@media (hover: hover) and (pointer: fine) {
+  html, html * {
+    cursor: none !important;
+  }
+}
+
 /* ─────────── Reduced motion ─────────── */
 @media (prefers-reduced-motion: reduce) {
   html,

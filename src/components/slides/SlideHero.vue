@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { computed, useTemplateRef } from 'vue'
+import { computed, useTemplateRef, watch } from 'vue'
+import { useMediaQuery, useDeviceOrientation } from '@vueuse/core'
 import { profile } from '@/data/profile'
 import { gsap } from 'gsap'
 import GradientButton from '@/components/ui/GradientButton.vue'
@@ -13,70 +14,181 @@ const props = defineProps<{ active: boolean }>()
 
 const { jumpById } = useNavigation()
 
-const orb1 = useTemplateRef<HTMLElement>('orb1')
-const orb2 = useTemplateRef<HTMLElement>('orb2')
+const blob1 = useTemplateRef<HTMLElement>('blob1')
+const blob2 = useTemplateRef<HTMLElement>('blob2')
+const blob3 = useTemplateRef<HTMLElement>('blob3')
+const blob4 = useTemplateRef<HTMLElement>('blob4')
+
+const isMobile = useMediaQuery('(max-width: 640px)')
+const { beta, gamma, isSupported: orientationSupported } = useDeviceOrientation()
 
 useAmbientLoop(
   computed(() => props.active),
   () => {
-    if (!orb1.value || !orb2.value) return () => {}
+    const blobs = [blob1.value, blob2.value, blob3.value, blob4.value]
+    if (blobs.some((b) => !b)) return () => {}
+    const [b1, b2, b3, b4] = [blob1.value!, blob2.value!, blob3.value!, blob4.value!]
     const tweens: gsap.core.Tween[] = []
+    const mobile = isMobile.value
+
+    // Config de capas según viewport
+    const entryCfg = mobile
+      ? [
+          { el: b1, to: { opacity: 0.12, scale: 1 }, from: { opacity: 0, scale: 0.8 } },
+          { el: b2, to: { opacity: 0.1, scale: 1 }, from: { opacity: 0, scale: 0.8 } },
+        ]
+      : [
+          { el: b1, to: { opacity: 0.2, scale: 1 }, from: { opacity: 0, scale: 0.8 } },
+          { el: b2, to: { opacity: 0.15, scale: 1 }, from: { opacity: 0, scale: 0.8 } },
+          { el: b3, to: { opacity: 0.12, scale: 1 }, from: { opacity: 0, scale: 0.85 } },
+          { el: b4, to: { opacity: 0.12, scale: 1 }, from: { opacity: 0, scale: 0.9 } },
+        ]
+
+    const ambientLayers = mobile ? [b1, b2] : [b1, b2, b3, b4]
+
+    // Entry — fade-in + scale simultáneos
+    const entryDelay = 0.6
+    entryCfg.forEach(({ el, from, to }) => {
+      tweens.push(
+        gsap.fromTo(el, from, { ...to, duration: 1.0, delay: entryDelay, ease: 'power2.out' }),
+      )
+    })
+
+    // Ambient — Lissajous drift
+    tweens.push(gsap.to(b1, { x: 60, duration: 18, ease: 'sine.inOut', yoyo: true, repeat: -1 }))
+    tweens.push(gsap.to(b1, { y: 40, duration: 22, ease: 'sine.inOut', yoyo: true, repeat: -1 }))
+    tweens.push(gsap.to(b2, { x: -45, duration: 15, ease: 'sine.inOut', yoyo: true, repeat: -1 }))
+    tweens.push(gsap.to(b2, { y: 50, duration: 20, ease: 'sine.inOut', yoyo: true, repeat: -1 }))
+
+    if (!mobile) {
+      tweens.push(gsap.to(b3, { x: 35, duration: 12, ease: 'sine.inOut', yoyo: true, repeat: -1 }))
+      tweens.push(gsap.to(b3, { y: -35, duration: 16, ease: 'sine.inOut', yoyo: true, repeat: -1 }))
+      tweens.push(
+        gsap.to(b3, {
+          rotation: 360,
+          transformOrigin: '50% 50%',
+          duration: 30,
+          ease: 'none',
+          repeat: -1,
+        }),
+      )
+      tweens.push(gsap.to(b4, { x: -25, duration: 10, ease: 'sine.inOut', yoyo: true, repeat: -1 }))
+      tweens.push(gsap.to(b4, { y: 25, duration: 14, ease: 'sine.inOut', yoyo: true, repeat: -1 }))
+      tweens.push(
+        gsap.to(b4, {
+          rotation: -360,
+          transformOrigin: '50% 50%',
+          duration: 25,
+          ease: 'none',
+          repeat: -1,
+        }),
+      )
+    }
+
+    // Ambient — pulse de opacidad
+    const ambientDelay = 3
     tweens.push(
-      gsap.fromTo(
-        orb1.value,
-        { opacity: 0 },
-        { opacity: 0.55, duration: 1.2, delay: 1.0, ease: 'power2.out' },
-      ),
-    )
-    tweens.push(
-      gsap.fromTo(
-        orb2.value,
-        { opacity: 0 },
-        { opacity: 0.35, duration: 1.2, delay: 1.0, ease: 'power2.out' },
-      ),
-    )
-    tweens.push(
-      gsap.to(orb1.value, {
-        x: 40,
-        y: 30,
-        duration: 14,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-      }),
-    )
-    tweens.push(
-      gsap.to(orb2.value, {
-        x: -30,
-        y: -45,
-        duration: 18,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-      }),
-    )
-    tweens.push(
-      gsap.to(orb1.value, {
-        opacity: 0.2,
+      gsap.to(b1, {
+        opacity: 0.08,
         duration: 5,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
+        delay: ambientDelay,
       }),
     )
     tweens.push(
-      gsap.to(orb2.value, {
-        opacity: 0.2,
+      gsap.to(b2, {
+        opacity: 0.06,
         duration: 6,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
+        delay: ambientDelay,
       }),
     )
+
+    if (!mobile) {
+      tweens.push(
+        gsap.to(b3, {
+          opacity: 0.05,
+          duration: 4,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+          delay: ambientDelay,
+        }),
+      )
+      tweens.push(
+        gsap.to(b4, {
+          opacity: 0.08,
+          duration: 5.5,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+          delay: ambientDelay,
+        }),
+      )
+    }
+
+    // Parallax updater
+    function updateParallax(cx: number, cy: number) {
+      const layers = mobile
+        ? [
+            { el: b1, intensity: 16 },
+            { el: b2, intensity: 24 },
+          ]
+        : [
+            { el: b1, intensity: 16 },
+            { el: b2, intensity: 24 },
+            { el: b3, intensity: 32 },
+            { el: b4, intensity: 48 },
+          ]
+      layers.forEach(({ el, intensity }) => {
+        gsap.to(el, {
+          rotationX: cy * intensity,
+          rotationY: cx * -intensity,
+          transformPerspective: 600,
+          duration: 1.5,
+          ease: 'power1.out',
+          overwrite: 'auto',
+        })
+      })
+    }
+
+    let cleanupParallax: () => void = () => {}
+
+    if (!mobile) {
+      const handler = (e: MouseEvent) => {
+        const cx = (e.clientX / window.innerWidth - 0.5) * 2
+        const cy = (e.clientY / window.innerHeight - 0.5) * 2
+        updateParallax(cx, cy)
+      }
+      window.addEventListener('mousemove', handler, { passive: true })
+      cleanupParallax = () => window.removeEventListener('mousemove', handler)
+    } else if (orientationSupported.value) {
+      const stopWatch = watch([beta, gamma], ([b, g]) => {
+        if (b == null || g == null) return
+        const cx = Math.max(-1, Math.min(1, (g ?? 0) / 30))
+        const cy = Math.max(-1, Math.min(1, (b ?? 0) / 45))
+        updateParallax(cx, cy)
+      })
+      cleanupParallax = stopWatch
+    }
+
     return () => {
       tweens.forEach((tw) => tw.kill())
-      if (orb1.value) gsap.set(orb1.value, { clearProps: 'opacity,transform' })
-      if (orb2.value) gsap.set(orb2.value, { clearProps: 'opacity,transform' })
+      cleanupParallax()
+      gsap.to(ambientLayers.filter(Boolean), {
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+        onComplete: () => {
+          ambientLayers.forEach((el) => {
+            if (el) gsap.set(el, { clearProps: 'opacity,transform' })
+          })
+        },
+      })
     }
   },
 )
@@ -89,15 +201,27 @@ useAmbientLoop(
     aria-label="Hero"
   >
     <div
-      ref="orb1"
-      data-slide-decor
-      class="bg-accent pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full opacity-0 blur-3xl"
+      ref="blob1"
+      class="b1 bg-accent pointer-events-none absolute bottom-0 h-96 w-96 rounded-full opacity-0 blur-3xl max-sm:h-48 max-sm:w-48"
+      style="left: 12.5%; transform: translate(-50%, 0)"
       aria-hidden="true"
     />
     <div
-      ref="orb2"
-      data-slide-decor
-      class="bg-accent-strong pointer-events-none absolute -bottom-40 -left-24 h-96 w-96 rounded-full opacity-0 blur-3xl"
+      ref="blob2"
+      class="b2 bg-accent pointer-events-none absolute top-0 h-96 w-96 rounded-full opacity-0 blur-3xl max-sm:h-48 max-sm:w-48"
+      style="left: 37.5%; transform: translate(-50%, 0)"
+      aria-hidden="true"
+    />
+    <div
+      ref="blob3"
+      class="b3 bg-accent pointer-events-none absolute bottom-0 h-96 w-96 rounded-full opacity-0 blur-3xl max-sm:hidden"
+      style="left: 62.5%; transform: translate(-50%, 0)"
+      aria-hidden="true"
+    />
+    <div
+      ref="blob4"
+      class="b4 bg-accent pointer-events-none absolute top-0 h-96 w-96 rounded-full opacity-0 blur-3xl max-sm:hidden"
+      style="left: 87.5%; transform: translate(-50%, 0)"
       aria-hidden="true"
     />
 
@@ -121,15 +245,29 @@ useAmbientLoop(
         </span>
       </h1>
 
-      <p data-slide-anim class="text-ctp-subtext1 max-w-3xl text-lg sm:text-xl md:text-2xl">
+      <p
+        data-slide-anim
+        class="text-ctp-subtext1 max-w-3xl text-lg sm:text-xl md:text-2xl"
+      >
         {{ t('hero.tagline') }}
       </p>
 
-      <div data-slide-anim class="flex flex-wrap items-center gap-3">
-        <GradientButton variant="primary" size="lg" @click="jumpById('contact')">
+      <div
+        data-slide-anim
+        class="flex flex-wrap items-center gap-3"
+      >
+        <GradientButton
+          variant="primary"
+          size="lg"
+          @click="jumpById('contact')"
+        >
           {{ t('hero.ctaContact') }}
         </GradientButton>
-        <GradientButton variant="outline" size="lg" @click="jumpById('projects')">
+        <GradientButton
+          variant="outline"
+          size="lg"
+          @click="jumpById('projects')"
+        >
           {{ t('nav.items.projects') }}
         </GradientButton>
       </div>

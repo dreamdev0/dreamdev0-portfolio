@@ -38,7 +38,10 @@ const currentSwatch = computed(() => {
 </script>
 
 <template>
-  <div ref="root" class="relative">
+  <div
+    ref="root"
+    class="relative"
+  >
     <button
       type="button"
       :aria-label="t('header.accent')"

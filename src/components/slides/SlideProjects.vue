@@ -10,7 +10,11 @@ defineProps<{ active: boolean }>()
 </script>
 
 <template>
-  <section id="projects" class="flex h-full w-full items-center" aria-label="Projects">
+  <section
+    id="projects"
+    class="flex h-full w-full items-center"
+    aria-label="Projects"
+  >
     <div class="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 sm:gap-10 sm:px-6">
       <div data-slide-anim>
         <SectionHeading>{{ t('projects.heading') }}</SectionHeading>
@@ -30,7 +34,7 @@ defineProps<{ active: boolean }>()
               :alt="t(`projects.items.${p.slug}.title`)"
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
-            />
+            >
           </div>
 
           <div
@@ -44,7 +48,11 @@ defineProps<{ active: boolean }>()
             </p>
 
             <div class="mt-auto flex flex-wrap gap-1.5 sm:gap-2 md:gap-2">
-              <TagChip v-for="tech in p.stack" :key="tech" :label="tech" />
+              <TagChip
+                v-for="tech in p.stack"
+                :key="tech"
+                :label="tech"
+              />
             </div>
 
             <div class="mt-3 flex flex-wrap gap-2">

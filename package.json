@@ -2,10 +2,8 @@
   "name": "dreamdev0-portfolio",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
-  "packageManager": "pnpm@11.1.2",
   "engines": {
-    "node": ">=20"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "vite",
@@ -13,54 +11,31 @@
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --fix",
-    "lint:check": "eslint .",
-    "format": "prettier --write \"src/**/*.{vue,ts,css,md,json}\" \"*.{ts,js,json,md}\"",
-    "format:check": "prettier --check \"src/**/*.{vue,ts,css,md,json}\" \"*.{ts,js,json,md}\"",
-    "hooks:install": "lefthook install"
+    "lint:check": "eslint ."
   },
   "dependencies": {
-    "@vercel/analytics": "^1.5.0",
-    "@vueuse/core": "^13.5.0",
-    "gsap": "^3.15.0",
-    "vue": "^3.5.13",
-    "vue-i18n": "^11.0.0",
-    "vue-router": "^4.5.0"
+    "@vercel/analytics": "^2",
+    "@vercel/speed-insights": "^2",
+    "@vueuse/core": "^14",
+    "gsap": "^3",
+    "vue": "^3",
+    "vue-i18n": "^11"
   },
   "devDependencies": {
-    "@catppuccin/tailwindcss": "^1.0.0",
-    "@fontsource-variable/inter": "^5.1.1",
-    "@fontsource-variable/jetbrains-mono": "^5.1.1",
-    "@tailwindcss/vite": "^4.0.0",
-    "@tsconfig/node22": "^22.0.5",
-    "@types/node": "^22.10.5",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "@vue/eslint-config-prettier": "^10.2.0",
-    "@vue/eslint-config-typescript": "^14.2.0",
-    "@vue/tsconfig": "^0.9.1",
-    "eslint": "^9.17.0",
-    "eslint-plugin-vue": "^9.32.0",
-    "lefthook": "^1.13.0",
-    "lint-staged": "^15.3.0",
-    "prettier": "^3.4.2",
-    "prettier-plugin-tailwindcss": "^0.6.9",
-    "tailwindcss": "^4.0.0",
-    "typescript": "~5.6.3",
-    "vite": "^6.0.7",
-    "vue-tsc": "^2.2.0"
-  },
-  "lint-staged": {
-    "*.{vue,ts,js}": [
-      "eslint --fix"
-    ],
-    "*.{vue,ts,js,css,md,json}": [
-      "prettier --write"
-    ]
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "vue-demi",
-      "lefthook"
-    ]
+    "@catppuccin/tailwindcss": "^1",
+    "@fontsource-variable/inter": "^5",
+    "@fontsource-variable/jetbrains-mono": "^5",
+    "@tailwindcss/vite": "^4",
+    "@tsconfig/node24": "^24",
+    "@types/node": "^24",
+    "@vitejs/plugin-vue": "^6",
+    "@vue/eslint-config-typescript": "^14",
+    "@vue/tsconfig": "^0",
+    "eslint": "^10",
+    "eslint-plugin-vue": "^10",
+    "tailwindcss": "^4",
+    "typescript": "^6",
+    "vite": "^8",
+    "vue-tsc": "^3"
   }
 }

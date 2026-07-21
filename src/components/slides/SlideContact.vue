@@ -37,7 +37,16 @@ useAmbientLoop(
     }
     return () => {
       tweens.forEach((tw) => tw.kill())
-      if (ring.value) gsap.set(ring.value, { clearProps: 'transform,opacity' })
+      if (ring.value) {
+        gsap.to(ring.value, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+          onComplete: () => {
+            gsap.set(ring.value!, { clearProps: 'transform,opacity' })
+          },
+        })
+      }
     }
   },
 )
@@ -69,10 +78,15 @@ useAmbientLoop(
       class="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center gap-8 px-4 text-center sm:px-6"
     >
       <div data-slide-anim>
-        <SectionHeading shimmer>{{ t('contact.heading') }}</SectionHeading>
+        <SectionHeading shimmer>
+          {{ t('contact.heading') }}
+        </SectionHeading>
       </div>
 
-      <p data-slide-anim class="text-ctp-subtext1 max-w-2xl text-xl sm:text-2xl">
+      <p
+        data-slide-anim
+        class="text-ctp-subtext1 max-w-2xl text-xl sm:text-2xl"
+      >
         {{ t('contact.intro') }}
       </p>
 
@@ -85,24 +99,12 @@ useAmbientLoop(
         <span class="from-accent to-accent-strong bg-gradient-to-r bg-clip-text text-transparent">
           {{ profile.contact.email }}
         </span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="text-accent transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-          aria-hidden="true"
-        >
-          <path d="M7 17 17 7M7 7h10v10" />
-        </svg>
       </a>
 
-      <div data-slide-anim class="mt-4 flex flex-wrap justify-center gap-3">
+      <div
+        data-slide-anim
+        class="mt-4 flex flex-wrap justify-center gap-3"
+      >
         <SocialIconLink />
       </div>
     </div>

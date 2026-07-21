@@ -165,7 +165,11 @@ useGsapReveal(stageEl, {
 </script>
 
 <template>
-  <div ref="stageEl" class="stage relative h-full w-full overflow-hidden" role="region">
+  <div
+    ref="stageEl"
+    class="stage relative h-full w-full overflow-hidden"
+    role="region"
+  >
     <div
       v-for="(item, i) in components"
       :key="item.id"
@@ -176,7 +180,10 @@ useGsapReveal(stageEl, {
       :inert="!isActive(item.id) ? true : undefined"
     >
       <div class="slide-scroll">
-        <component :is="item.component" :active="isActive(item.id)" />
+        <component
+          :is="item.component"
+          :active="isActive(item.id)"
+        />
       </div>
     </div>
   </div>

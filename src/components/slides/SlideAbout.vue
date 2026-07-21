@@ -29,16 +29,34 @@ function isTypewriter(p: string): boolean {
     <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col justify-center px-4 sm:px-6">
       <div class="flex flex-col gap-4 sm:gap-6">
         <div data-slide-anim>
-          <SectionHeading shimmer>{{ t('about.heading') }}</SectionHeading>
+          <SectionHeading shimmer>
+            {{ t('about.heading') }}
+          </SectionHeading>
         </div>
 
         <div class="text-ctp-subtext1 flex flex-col gap-4 text-base leading-relaxed sm:text-lg">
-          <template v-for="(p, i) in paragraphs" :key="i">
-            <p v-if="isTypewriter(p)" data-slide-anim class="text-2xl font-bold">
+          <template
+            v-for="(p, i) in paragraphs"
+            :key="i"
+          >
+            <p
+              v-if="isTypewriter(p)"
+              data-slide-anim
+              class="text-2xl font-bold"
+            >
               <TypewriterText :text="typewriterText" />
             </p>
-            <p v-else-if="isHtml(p)" data-slide-anim v-html="p" />
-            <p v-else data-slide-anim>{{ p }}</p>
+            <p
+              v-else-if="isHtml(p)"
+              data-slide-anim
+              v-html="p"
+            />
+            <p
+              v-else
+              data-slide-anim
+            >
+              {{ p }}
+            </p>
           </template>
         </div>
       </div>

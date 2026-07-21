@@ -66,7 +66,11 @@ defineExpose({ root, items })
       </svg>
     </a>
 
-    <nav ref="items" class="hidden items-center gap-1 md:flex" :aria-label="t('nav.items.hero')">
+    <nav
+      ref="items"
+      class="hidden items-center gap-1 md:flex"
+      :aria-label="t('nav.items.hero')"
+    >
       <button
         v-for="s in sections"
         :key="s.id"
@@ -81,7 +85,10 @@ defineExpose({ root, items })
       </button>
     </nav>
 
-    <div ref="items" class="flex items-center gap-2">
+    <div
+      ref="items"
+      class="flex items-center gap-2"
+    >
       <div data-entry-item>
         <LocaleSwitcher />
       </div>

@@ -38,7 +38,7 @@ void profile
     target="_blank"
     rel="noopener noreferrer"
     :aria-label="ariaLabel(link.id)"
-    class="group border-ctp-surface1 bg-ctp-surface0/60 text-ctp-subtext1 hover:border-accent hover:bg-accent hover:text-ctp-base focus-visible:border-accent flex h-12 w-12 items-center justify-center rounded-xl border transition-all hover:-translate-y-1"
+    class="group border-ctp-surface1 bg-ctp-surface0/60 text-ctp-subtext1 hover:border-accent hover:text-accent focus-visible:border-accent flex h-12 w-12 items-center justify-center rounded-xl border transition-colors"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"

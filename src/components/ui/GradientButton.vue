@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
   ariaLabel: undefined,
 })
 
-const tag = computed(() => (props.href ? 'a' : props.to ? 'router-link' : 'button'))
+const tag = computed<'a' | 'button'>(() => (props.href || props.to ? 'a' : 'button'))
 
 const sizeClass = computed(() => {
   switch (props.size) {

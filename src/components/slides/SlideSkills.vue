@@ -15,7 +15,9 @@ const { t } = useI18n()
   >
     <div class="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 sm:gap-10 sm:px-6">
       <div data-slide-anim>
-        <SectionHeading shimmer>{{ t('skills.heading') }}</SectionHeading>
+        <SectionHeading shimmer>
+          {{ t('skills.heading') }}
+        </SectionHeading>
       </div>
 
       <div class="grid gap-3 sm:grid-cols-2 sm:gap-6">
@@ -30,7 +32,11 @@ const { t } = useI18n()
             {{ t(`skills.categories.${cat.id}`) }}
           </h3>
           <div class="flex flex-wrap gap-2">
-            <TagChip v-for="item in cat.items" :key="item" :label="item" />
+            <TagChip
+              v-for="item in cat.items"
+              :key="item"
+              :label="item"
+            />
           </div>
         </div>
       </div>

@@ -7,7 +7,10 @@ withDefaults(defineProps<{ eyebrow?: string; shimmer?: boolean }>(), {
 
 <template>
   <div class="flex flex-col gap-3">
-    <div v-if="eyebrow" class="flex items-center gap-3">
+    <div
+      v-if="eyebrow"
+      class="flex items-center gap-3"
+    >
       <span class="bg-accent h-[2px] w-12 rounded-full" />
       <span class="text-accent text-xs font-semibold tracking-[0.2em] uppercase">
         {{ eyebrow }}

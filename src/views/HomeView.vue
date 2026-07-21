@@ -3,7 +3,7 @@ import { computed, useTemplateRef, markRaw, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppFooter from '@/components/layout/AppFooter.vue'
-import CursorGlow from '@/components/layout/CursorGlow.vue'
+
 import SlideStage from '@/components/layout/SlideStage.vue'
 import SlideHero from '@/components/slides/SlideHero.vue'
 import SlideAbout from '@/components/slides/SlideAbout.vue'
@@ -91,8 +91,6 @@ const skipTarget = computed(() => sections[1]?.id ?? 'about')
 
 <template>
   <div class="flex h-full flex-col">
-    <CursorGlow />
-
     <a
       :href="`#${skipTarget}`"
       class="focus:bg-ctp-mantle focus:text-ctp-text sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:px-3 focus:py-2 focus:text-sm"
@@ -101,7 +99,11 @@ const skipTarget = computed(() => sections[1]?.id ?? 'about')
       {{ t('nav.skipToContent') }}
     </a>
 
-    <AppHeader ref="headerRef" :active="activeId" @jump="jumpById" />
+    <AppHeader
+      ref="headerRef"
+      :active="activeId"
+      @jump="jumpById"
+    />
 
     <main class="relative flex-1 overflow-hidden">
       <SlideStage
@@ -118,11 +120,7 @@ const skipTarget = computed(() => sections[1]?.id ?? 'about')
 
     <AppFooter
       ref="footerRef"
-      :sections="sections"
-      :active="activeId"
-      :enabled="navEnabled"
       :progress="nav.progress.value"
-      @jump="jumpById"
     />
   </div>
 </template>
